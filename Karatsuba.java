@@ -1,30 +1,39 @@
-package karatsuba;
-import java.util.Scanner;
+import java.util.*;
+
 public class Karatsuba {
-    public static void main(String[] args) {
-        String x, y;
-        int a, b ,c, d, ac, ad, bc, bd, answer;
+    public static void main(String args[]){
+        Scanner input = new Scanner(System.in);
         
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter X: ");
-        x = sc.nextLine();
-        System.out.println("Enter Y: ");
-        y = sc.nextLine();
+        String x = input.next();
+        String y = input.next();
         
-        a = Integer.parseInt(x.substring(0, 2));
-        b = Integer.parseInt(x.substring(2, 4));
-        c = Integer.parseInt(y.substring(0, 2));
-        d = Integer.parseInt(y.substring(2, 4)); 
+        int a = 0;
+        int b = 0;
+        int c = 0;
+        int d = 0;
+        int prod = 0;
         
-        ac = a * c;
-        ad = a * d;
-        bc = b * c;
-        bd = b * d;
+        if(x.length() > 1 && y.length() > 1){
+            a = Integer.parseInt(x.substring(0,Math.round(x.length()/2))) * (int)Math.pow(10,(double)(x.length()-Math.round(x.length()/2)));
+            b = Integer.parseInt(x.substring(Math.round(x.length()/2)));
+            c = Integer.parseInt(y.substring(0,Math.round(y.length()/2))) * (int)Math.pow(10,(double)(y.length()-Math.round(y.length()/2)));
+            d = Integer.parseInt(y.substring(Math.round(y.length()/2)));
+
+            System.out.println("a: " + a);
+            System.out.println("b: " + b);
+            System.out.println("c: " + c);
+            System.out.println("d: " + d);
+
+            prod = (a*c) + (a*d) + (b*c) + (b*d);
+        }
         
-        answer = ac * 10000;
-        answer += ((ad+bc)*100);
-        answer += bd;
+        else{
+            a = Integer.parseInt(x);
+            b = Integer.parseInt(y);
+            
+            prod = a*b;
+        }
         
-        System.out.println("The answer is: "+answer);
+        System.out.println("Product: " + prod);
     }
 }
